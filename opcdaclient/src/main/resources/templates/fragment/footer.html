@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="footer">
+<head>
+    <title>Event List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .table-container {
+            width: 100%;
+            max-height: 200px; 
+            overflow-y: auto; 
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            position : sticky;
+            top : 0;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Source</th>
+                    <th>Event</th>
+                </tr>
+            </thead>
+            <tbody>
+        <!--   	<tr th:each="event : ${events}">
+                	<td th:text="${event.date}"></td>
+                	<td th:text="${event.time}"></td>
+                	<td th:text="${event.source}"></td>
+                	<td th:text="${event.event}"></td>
+            	</tr>  -->
+                <tr>
+                    <td>2025-02-10</td>
+                    <td>8:23:59 오후</td>
+                    <td>KEPServerEX Runtime</td>
+                    <td>Runtime service started.</td>
+                </tr>
+                <tr>
+                    <td>2025-02-10</td>
+                    <td>8:23:59 오후</td>
+                    <td>Simulator</td>
+                    <td>Starting Simulator device driver.</td>
+                </tr>
+                <tr>
+                    <td>2025-02-10</td>
+                    <td>8:23:59 오후</td>
+                    <td>KEPServerEX Runtime</td>
+                    <td>Configuration session started by ocean as Default User (R/W).</td>
+                </tr>
+                <tr>
+                    <td>2025-02-10</td>
+                    <td>8:24:00 오후</td>
+                    <td>Simulator</td>
+                    <td>Advanced Tags Plugin V6.13.250.0</td>
+                </tr>
+                <tr>
+                    <td>2025-02-10</td>
+                    <td>8:24:01 오후</td>
+                    <td>KEPServerEX Runtime</td>
+                    <td>Data Logger Plugin V6.13.250.0</td>
+                </tr>
+                <tr>
+                    <td>2025-02-10</td>
+                    <td>8:24:01 오후</td>
+                    <td>KEPServerEX Runtime</td>
+                    <td>Data Logger Plugin V6.13.250.0</td>
+                </tr>
+                <tr>
+                    <td>2025-02-10</td>
+                    <td>8:24:01 오후</td>
+                    <td>KEPServerEX Runtime</td>
+                    <td>Data Logger Plugin V6.13.250.0</td>
+                </tr>
+                <tr>
+                    <td>2025-02-10</td>
+                    <td>8:24:01 오후</td>
+                    <td>KEPServerEX Runtime</td>
+                    <td>Data Logger Plugin V6.13.250.0</td>
+                </tr>
+                <tr>
+                    <td>2025-02-10</td>
+                    <td>8:24:01 오후</td>
+                    <td>KEPServerEX Runtime</td>
+                    <td>Data Logger Plugin V6.13.250.0</td>
+                </tr>
+                <tr>
+                    <td>2025-02-10</td>
+                    <td>8:24:01 오후</td>
+                    <td>KEPServerEX Runtime</td>
+                    <td>Data Logger Plugin V6.13.250.0</td>
+                </tr>
+                <tr>
+                    <td>2025-02-10</td>
+                    <td>8:24:01 오후</td>
+                    <td>KEPServerEX Runtime</td>
+                    <td>Data Logger Plugin V6.13.250.0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</div>
+</html>

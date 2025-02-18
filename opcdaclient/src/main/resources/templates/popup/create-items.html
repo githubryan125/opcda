@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>New Items Modal Example</title>
+  <style>
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      font-size: 12px;
+    }
+    .modal {
+      display: none; 
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      justify-content: center; 
+      align-items: center;    
+    }
+    .modal.active {
+      display: flex; 
+    }
+
+    .modal-content {
+      background-color: #f8f8f8;
+      width: 800px;  
+      border: 1px solid #333;
+      padding: 20px;
+      position: relative;
+      border-radius: 10px;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr; 
+      grid-template-rows: auto auto; 
+      gap: 10px;
+    }
+
+    .box {
+      border: 1px solid #000;
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 6px;
+    }
+
+    .box-title {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .scroll-area {
+      width: 100%;
+      height: 150px;
+      border: 1px solid #ccc;
+      margin-top: 5px;
+      overflow-y: auto; 
+      background-color: #fafafa;
+      padding: 5px;
+      box-sizing: border-box;
+    }
+
+    .bottom-right-cell {
+      background-color: #f8f8f8;
+      padding: 10px;
+    }
+    .group-info {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .button-container {
+      text-align: center;
+      border: none;      
+      background-color: #f8f8f8; 
+      padding: 0;
+      margin: 0;
+    }
+
+    .btn {
+      padding: 10px 20px; 
+      margin: 5px;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;    
+    }
+    .btn-primary {
+      background-color: #007bff;
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+    .btn-secondary {
+      background-color: #ccc;
+    }
+    .btn-secondary:hover {
+      background-color: #999;
+    }
+  </style>
+</head>
+<body>
+
+<button id="openModalBtn" class="btn btn-primary">모달 열기</button>
+
+
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <div class="grid-container">
+
+      <div class="box">
+        <div class="box-title">
+          Available Items in Server 'Matrikon.OPC.Simulation.1'
+        </div>
+        <div class="scroll-area" id="availableItems">
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="box-title">
+          Tags to be Added
+        </div>
+        <div class="scroll-area" id="tagsToBeAdded">
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="box-title">
+          Selected Branches "NewAlias2.NewAlias3":
+        </div>
+        <p>Available Tags</p>
+        <div class="scroll-area" id="availableTags">
+        </div>
+      </div>
+
+      <div class="bottom-right-cell">
+        <div class="group-info">
+          <strong>현재 선택한 그룹 :</strong> <span id="currentGroup">Group0</span>
+        </div>
+
+        <div class="button-container">
+          <button id="okBtn" class="btn btn-primary">OK</button>
+          <button id="cancelBtn" class="btn btn-secondary">Cancel</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  const openModalBtn = document.getElementById('openModalBtn');
+  const myModal = document.getElementById('myModal');
+  const okBtn = document.getElementById('okBtn');
+  const cancelBtn = document.getElementById('cancelBtn');
+
+  openModalBtn.onclick = () => {
+    myModal.classList.add('active');
+  };
+
+  function closeModal() {
+    myModal.classList.remove('active');
+  }
+
+  okBtn.onclick = () => {
+    alert("OK 버튼을 눌렀습니다.");
+    closeModal();
+  };
+
+  cancelBtn.onclick = () => {
+    closeModal();
+  };
+
+  window.onclick = (event) => {
+    if (event.target === myModal) {
+      closeModal();
+    }
+  };
+</script>
+
+</body>
+</html>

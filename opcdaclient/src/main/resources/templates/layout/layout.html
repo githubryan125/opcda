@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>OPC DA Client</title>
+    <style>
+	    .b1 {
+	      width: 120px;
+	      height: 50px;
+	      border: 1px solid #000;
+	      float: right;
+	      margin: 3px;
+	      box-sizing: border-box;
+	    }
+	    .b2 {
+	      width: 230px;
+	      height: 50px;
+	      border: 1px solid #000;
+	      float: right;
+	      margin: 3px;
+	      box-sizing: border-box;
+	      display: flex;
+	      align-items: center;
+	      justify-content: center;
+	    }
+	    .b2 p {
+	      margin: 0;
+	      padding: 0;
+	      display: flex;
+	      align-items: center;
+	      justify-content: center;
+	      gap: 6px; 
+	      width: 100%;
+	      box-sizing: border-box;
+	    }
+
+	    .b2 p button {
+	      width: 60px;   
+	      height: 32px;  
+	      font-size: 16px;
+	      cursor: pointer;
+	    }
+	    .container {
+	      height: 14vh;
+	      border: 1px solid #000;
+	      box-sizing: border-box;
+	      clear: left;
+	    }
+	  	.body-left{
+	  		width:40%;
+    		height:60vh;
+    		border : 1px solid #000;
+    		float:left;
+    		box-sizing : border-box;
+	  	}
+	  	.body-right{
+	  		width:60%;
+    		height:60vh;
+    		border : 1px solid #000;
+    		float: right;
+    		box-sizing : border-box;
+	  	}
+
+    </style>
+</head>
+<body>
+	<div class="container">
+		<div th:replace="~{fragment/header :: header}"></div>
+	</div>
+	<div class="body-left">바디 왼쪽</div>
+	<div class="body-right">바디 오른쪽</div>
+	<div>
+		<div th:replace="~{fragment/footer :: footer}"></div>
+	</div>
+</body>
+</html>
