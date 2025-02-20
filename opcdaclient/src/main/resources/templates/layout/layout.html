@@ -4,73 +4,212 @@
     <meta charset="UTF-8">
     <title>OPC DA Client</title>
     <style>
-	    .b1 {
-	      width: 120px;
-	      height: 50px;
-	      border: 1px solid #000;
-	      float: right;
-	      margin: 3px;
-	      box-sizing: border-box;
-	    }
-	    .b2 {
-	      width: 230px;
-	      height: 50px;
-	      border: 1px solid #000;
-	      float: right;
-	      margin: 3px;
-	      box-sizing: border-box;
-	      display: flex;
-	      align-items: center;
-	      justify-content: center;
-	    }
-	    .b2 p {
-	      margin: 0;
-	      padding: 0;
-	      display: flex;
-	      align-items: center;
-	      justify-content: center;
-	      gap: 6px; 
-	      width: 100%;
-	      box-sizing: border-box;
-	    }
+        .b1 {
+            width: 120px;
+            height: 50px;
+            border: 1px solid #000;
+            float: right;
+            margin: 3px;
+            box-sizing: border-box;
+        }
+        .b2 {
+            width: 230px;
+            height: 50px;
+            border: 1px solid #000;
+            float: right;
+            margin: 3px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .b2 p {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px; 
+            width: 100%;
+            box-sizing: border-box;
+        }
 
-	    .b2 p button {
-	      width: 60px;   
-	      height: 32px;  
-	      font-size: 16px;
-	      cursor: pointer;
-	    }
-	    .container {
-	      height: 14vh;
-	      border: 1px solid #000;
-	      box-sizing: border-box;
-	      clear: left;
-	    }
-	  	.body-left{
-	  		width:40%;
-    		height:60vh;
-    		border : 1px solid #000;
-    		float:left;
-    		box-sizing : border-box;
-	  	}
-	  	.body-right{
-	  		width:60%;
-    		height:60vh;
-    		border : 1px solid #000;
-    		float: right;
-    		box-sizing : border-box;
-	  	}
-
+        .b2 p button {
+            width: 60px;   
+            height: 32px;  
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .container {
+            height: 14vh;
+            border: 1px solid #000;
+            box-sizing: border-box;
+            clear: left;
+        }
+        .body-left{
+            width:40%;
+            height:60vh;
+            border : 1px solid #000;
+            float:left;
+            box-sizing : border-box;
+            padding: 10px;
+        }
+        .body-right{
+            width:60%;
+            height:60vh;
+            border : 1px solid #000;
+            float: right;
+            box-sizing : border-box;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        .modal-content {
+            background-color: #fff;
+            border-radius: 10px;
+            width: 800px;
+            margin: 10% auto;
+            padding: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .modal-header {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .input-group {
+            margin: 10px 0;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        .checkbox-group label {
+            margin-left: 5px;
+        }
+        .button-group {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .btn {
+        	width : 100px;
+            padding: 8px 15px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-secondary {
+            background-color: #ccc;
+        }
+        .btn-secondary:hover {
+            background-color: #999;
+        }
+        .modal-footer {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
-	<div class="container">
-		<div th:replace="~{fragment/header :: header}"></div>
-	</div>
-	<div class="body-left">바디 왼쪽</div>
-	<div class="body-right">바디 오른쪽</div>
-	<div>
-		<div th:replace="~{fragment/footer :: footer}"></div>
-	</div>
+    <div class="container">
+        <div th:replace="~{fragment/header :: header}"></div>
+    </div>
+
+    <div class="body-left">
+    	<div th:replace="~{fragment/body-left :: body-left}"></div>
+
+    </div>
+    
+    <div class="body-right">바디 오른쪽</div>
+
+    <div>
+        <div th:replace="~{fragment/footer :: footer}"></div>
+    </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const modal = document.getElementById("modal");
+            const openModal = document.getElementById("openModal");
+            const cancelButton = document.getElementById("cancelButton");
+            const okButton = document.getElementById("okButton");
+			
+			
+			const openModalBtn = document.getElementById('openModalBtn');
+  			const myModal = document.getElementById('myModal');
+  			const okBtn = document.getElementById('okBtn');
+  			const cancelBtn = document.getElementById('cancelBtn');
+
+            openModal.onclick = () => {
+                modal.style.display = "block";
+            };
+
+            cancelButton.onclick = () => {
+                modal.style.display = "none";
+            };
+
+            okButton.onclick = () => {
+                alert("설정이 저장되었습니다.");
+                modal.style.display = "none";
+            };
+
+
+            window.onclick = (e) => {
+                if (e.target === modal) {
+                    modal.style.display = "none";
+                	}
+            	};
+            openModalBtn.onclick = () => {
+    			myModal.classList.add('active');
+  			};
+
+  			function closeModal() {
+    			myModal.classList.remove('active');
+  			}
+
+  			okBtn.onclick = () => {
+    			alert("OK 버튼을 눌렀습니다.");
+    		closeModal();
+  			};
+
+  			cancelBtn.onclick = () => {
+    			closeModal();
+  			};
+
+  			window.onclick = (event) => {
+    			if (event.target === myModal) {
+      				closeModal();
+    				}
+  				};
+        });
+    </script>
 </body>
 </html>

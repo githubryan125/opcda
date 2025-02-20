@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>New Items Modal Example</title>
+  <div th:fragment="itemsModal">
   <style>
-
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
@@ -25,7 +25,6 @@
     .modal.active {
       display: flex; 
     }
-
     .modal-content {
       background-color: #f8f8f8;
       width: 800px;  
@@ -81,14 +80,13 @@
       padding: 0;
       margin: 0;
     }
-
-    .btn {
-      padding: 10px 20px; 
-      margin: 5px;
-      cursor: pointer;
-      border: none;
-      border-radius: 4px;
-      font-size: 14px;    
+	
+	.btn {
+		padding: 8px 15px;
+        margin: 0 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
     }
     .btn-primary {
       background-color: #007bff;
@@ -107,7 +105,7 @@
 </head>
 <body>
 
-<button id="openModalBtn" class="btn btn-primary">모달 열기</button>
+<button id="openModalBtn" class="btn btn-primary">items 생성</button>
 
 
 <div id="myModal" class="modal">
@@ -153,7 +151,7 @@
     </div>
   </div>
 </div>
-
+</div>
 <script>
   const openModalBtn = document.getElementById('openModalBtn');
   const myModal = document.getElementById('myModal');

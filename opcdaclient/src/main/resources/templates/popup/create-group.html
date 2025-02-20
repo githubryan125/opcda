@@ -1,164 +1,70 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Group Settings Modal</title>
-    <style>
-        .modal {
-            display: none; 
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); 
-            z-index: 1000;
-        }
-
-        .modal-content {
-            background-color: #fff;
-            border-radius: 10px;
-            width: 400px;
-            margin: 10% auto;
-            padding: 20px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .modal-header {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .input-group {
-            margin: 10px 0;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            margin: 10px 0;
-        }
-
-        .checkbox-group label {
-            margin-left: 5px;
-        }
-
-        .button-group {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .btn {
-            padding: 8px 15px;
-            margin: 0 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
-
-        .btn-secondary {
-            background-color: #ccc;
-        }
-
-        .btn-secondary:hover {
-            background-color: #999;
-        }
-
-        .modal-footer {
-            text-align: center;
-            margin-top: 15px;
-            font-size: 14px;
-        }
-    </style>
 </head>
 <body>
+    <div th:fragment="groupModal">
+        <button id="openModal" class="btn btn-primary">Group 생성</button>
+        <div id="modal" class="modal">
+            <div class="modal-content" style="width:400px; ">
+                <div class="modal-header">New Group Settings</div>
 
-    <button id="openModal" class="btn btn-primary">모달 열기</button>
+                <div class="input-group">
+                    <label for="groupName">Group Name:</label>
+                    <input type="text" id="groupName" placeholder="Enter group name">
+                </div>
 
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">New Group Settings</div>
+                <div class="input-group">
+                    <label for="updateRate">Update Rate (msec):</label>
+                    <input type="number" step="100" min="0" id="updateRate" placeholder="1000">
+                </div>
 
-            <div class="input-group">
-                <label for="groupName">Group Name:</label>
-                <input type="text" id="groupName" placeholder="Enter group name">
-            </div>
+                <div class="input-group">
+                    <label for="deadband">% Deadband (Full Scale):</label>
+                    <input type="number" step="0.01" min="0" id="deadband" placeholder="0">
+                </div>
 
-            <div class="input-group">
-                <label for="updateRate">Update Rate (msec):</label>
-                <input type="number" step="100" min="0" id="updateRate" placeholder="1000">
-            </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="createActive">
+                    <label for="createActive">Create Active</label>
+                </div>
 
-            <div class="input-group">
-                <label for="deadband">% Deadband (Full Scale):</label>
-                <input type="number" step="0.01" min="0" id="deadband" placeholder="0">
-            </div>
+                <div class="button-group">
+                    <button id="okButton" class="btn btn-primary">OK</button>
+                    <button id="cancelButton" class="btn btn-secondary">Cancel</button>
+                </div>
 
-            <div class="checkbox-group">
-                <input type="checkbox" id="createActive">
-                <label for="createActive">Create Active</label>
-            </div>
-
-            <div class="button-group">
-                <button id="okButton" class="btn btn-primary">OK</button>
-                <button id="cancelButton" class="btn btn-secondary">Cancel</button>
-            </div>
-
-            <div class="modal-footer">
-                Group의 생성 위치: Matrikon.OPC.Simulation.1
+                <div class="modal-footer">
+                    Group의 생성 위치: Matrikon.OPC.Simulation.1
+                </div>
             </div>
         </div>
-    </div>
+        <script>
+            const modal = document.getElementById("modal");
+            const openModal = document.getElementById("openModal");
+            const cancelButton = document.getElementById("cancelButton");
+            const okButton = document.getElementById("okButton");
 
-    <script>
-        const modal = document.getElementById("modal");
-        const openModal = document.getElementById("openModal");
-        const cancelButton = document.getElementById("cancelButton");
-        const okButton = document.getElementById("okButton");
+            openModal.onclick = () => {
+                modal.style.display = "block";
+            };
 
-        openModal.onclick = () => {
-            modal.style.display = "block";
-        };
-
-        cancelButton.onclick = () => {
-            modal.style.display = "none";
-        };
-
-        okButton.onclick = () => {
-            alert("설정이 저장되었습니다.");
-            modal.style.display = "none";
-        };
-        
-        window.onclick = (e) => {
-            if (e.target === modal) {
+            cancelButton.onclick = () => {
                 modal.style.display = "none";
-            }
-        };
-    </script>
+            };
 
+            okButton.onclick = () => {
+                alert("설정이 저장되었습니다.");
+                modal.style.display = "none";
+            };
+            
+            window.onclick = (e) => {
+                if (e.target === modal) {
+                    modal.style.display = "none";
+                }
+            };
+        </script>
+    </div>
 </body>
 </html>
