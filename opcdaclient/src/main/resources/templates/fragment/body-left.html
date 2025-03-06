@@ -3,14 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 </head>
 <body>
-  <div th:fragment="body-left">
-
-  <div th:replace="popup/create-group :: groupModal"></div>
-  <div th:replace="popup/create-items :: itemsModal"></div>
-  
-</div>
+ 	<div th:fragment="body-left">
+	<button id="openModal" class="btn btn-primary">Group 생성</button>
+	<button id="openModalBtn" class="btn btn-primary">items 생성</button>
+ 	<div th:replace="popup/create-group :: groupModal"></div>
+ 	<div th:replace="popup/create-items :: itemsModal"></div>
+  	
+  	<script>
+		const openModal = document.getElementById("openModal");
+		const openModalBtn = document.getElementById('openModalBtn');
+	
+		openModal.onclick = () => {
+			modal.classList.add('active');
+		};
+         
+    	openModalBtn.onclick = () => {
+      		myModal.classList.add('active');
+  		};
+	</script>
+	</div>
 </body>
 </html>

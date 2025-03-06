@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
 </head>
 <body>
-    <div th:fragment="groupModal">
-        <button id="openModal" class="btn btn-primary">Group 생성</button>
+<div th:fragment="groupModal">
         <div id="modal" class="modal">
             <div class="modal-content" style="width:400px; ">
                 <div class="modal-header">New Group Settings</div>
@@ -17,12 +16,12 @@
 
                 <div class="input-group">
                     <label for="updateRate">Update Rate (msec):</label>
-                    <input type="number" step="100" min="0" id="updateRate" placeholder="1000">
+                    <input type="number" id="updateRate" placeholder="1000">
                 </div>
 
                 <div class="input-group">
                     <label for="deadband">% Deadband (Full Scale):</label>
-                    <input type="number" step="0.01" min="0" id="deadband" placeholder="0">
+                    <input type="number" id="deadband" placeholder="0">
                 </div>
 
                 <div class="checkbox-group">
@@ -42,26 +41,24 @@
         </div>
         <script>
             const modal = document.getElementById("modal");
-            const openModal = document.getElementById("openModal");
             const cancelButton = document.getElementById("cancelButton");
             const okButton = document.getElementById("okButton");
-
-            openModal.onclick = () => {
-                modal.style.display = "block";
-            };
-
+			
+            function closeModal() {
+        		modal.classList.remove('active');
+      		}
             cancelButton.onclick = () => {
-                modal.style.display = "none";
+            	modal.classList.remove('active');
             };
 
             okButton.onclick = () => {
                 alert("설정이 저장되었습니다.");
-                modal.style.display = "none";
+                modal.classList.remove('active');
             };
             
-            window.onclick = (e) => {
+            modal.onclick = (e) => {
                 if (e.target === modal) {
-                    modal.style.display = "none";
+                	modal.classList.remove('active');
                 }
             };
         </script>
