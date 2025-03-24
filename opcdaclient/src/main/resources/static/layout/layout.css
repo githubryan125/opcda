@@ -1,0 +1,58 @@
+
+        .b1 {
+            width: 120px;
+            height: 50px;
+            border: 1px solid #000;
+            float: right;
+            margin: 3px;
+            box-sizing: border-box;
+        }
+        .b2 {
+            width: 230px;
+            height: 50px;
+            border: 1px solid #000;
+            float: right;
+            margin: 3px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .b2 p {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px; 
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .b2 p button {
+            width: 60px;   
+            height: 32px;  
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .container {
+            height: 14vh;
+            border: 1px solid #000;
+            box-sizing: border-box;
+            clear: left;
+        }
+        .body-left{
+            width:40%;
+            height:60vh;
+            border : 1px solid #000;
+            float:left;
+            box-sizing : border-box;
+            padding: 10px;
+        }
+        .body-right{
+            width:60%;
+            height:60vh;
+            border : 1px solid #000;
+            float: right;
+            box-sizing : border-box;
+        }
