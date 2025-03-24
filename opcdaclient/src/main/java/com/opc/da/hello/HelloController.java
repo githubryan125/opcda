@@ -31,4 +31,8 @@ public class HelloController {
     public String footertest() {
     	return "fragment/footer";
     }
+    @GetMapping("/test")
+    public String test() {
+    	return "testfile";
+    }
 }

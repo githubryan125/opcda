@@ -2,6 +2,7 @@
 <html xmlns:th="http:www.thymeleaf.org" lang="ko">
 <head>
     <meta charset="UTF-8">
+    
     <title>OPC DA Client</title>
     <link th:href="@{/layout/layout.css}" rel="stylesheet" />
     <link th:href="@{/fragment/footer.css}" rel="stylesheet" />
@@ -16,8 +17,9 @@
     <div class="body-left">
     	<div th:replace="~{fragment/body-left :: body-left}"></div>
     </div>
-    <div class="body-right">바디 오른쪽</div>
-
+    <div class="body-right">
+		<div th:replace="~{fragment/body-right :: body-right}"></div>
+	</div>
     <div>
         <div th:replace="~{fragment/footer :: footer}"></div>
     </div>
