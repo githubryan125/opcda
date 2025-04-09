@@ -18,23 +18,51 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
   <script type="text/javascript">
-    $(function(){
-      $("#tree").fancytree({
-        extensions: ["contextMenu"],
-        contextMenu: {
-          menu: {
-            "Connect": { "name": "Connect", "icon": "fas fa-plug" }, 
-            "DisConnect": { "name": "DisConnect", "icon": "fas fa-unlink" }, 
-            "Add Groups": { "name": "Add Groups", "icon": "fas fa-users" }, 
-            "Delete Group": { "name": "Delete Group", "icon": "fas fa-trash-alt" }, 
-            "Add Tags": { "name": "Add Tags", "disabled": true, "icon": "fas fa-tags" }, 
-            "sep1": "---------",
-            "quit": { "name": "Quit", "icon": "fas fa-sign-out-alt" }, // 종료 아이콘
-            "sep2": "---------",
-          },
-        },
-      });
-    });
+  $(function(){
+		$("#tree").fancytree({
+	       extensions: ["contextMenu"],
+	       contextMenu: {
+	    	   menu: function(node){
+	    	   if (node.folder){                 
+	    	     return {
+	    	 	           "Connect": { "name": "Connect","disabled": true, "icon": "fas fa-plug" }, 
+	    	 	           "DisConnect": { "name": "DisConnect","disabled": true, "icon": "fas fa-unlink" }, 
+	    	 	           "Add Groups": { "name": "Add Groups", "icon": "fas fa-users" }, 
+	    	 	           "Delete Group": { "name": "Delete Group", "disabled": true, "icon": "fas fa-trash-alt" }, 
+	    	 	           "Add Tags": { "name": "Add Tags", "disabled": true, "icon": "fas fa-tags" }, 
+	    	 	           "sep1": "---------",
+	    	 	           "quit": { "name": "Quit", "icon": "fas fa-sign-out-alt" },
+	    	 	           "sep2": "---------",
+	    	     };
+	    	    }else if(node.expanded){
+	    	    	return{
+	    	 	           "Connect": { "name": "Connect","icon": "fas fa-plug" }, 
+	    	 	           "DisConnect": { "name": "DisConnect","icon": "fas fa-unlink" }, 
+	    	 	           "Add Groups": { "name": "Add Groups","disabled": true, "icon": "fas fa-users" }, 
+	    	 	           "Delete Group": { "name": "Delete Group", "disabled": true, "icon": "fas fa-trash-alt" }, 
+	    	 	           "Add Tags": { "name": "Add Tags", "disabled": true, "icon": "fas fa-tags" }, 
+	    	 	           "sep1": "---------",
+	    	 	           "quit": { "name": "Quit", "icon": "fas fa-sign-out-alt" },
+	    	 	           "sep2": "---------",
+	    	    	}
+	    	    }
+	    	    else {
+	    	       return {
+	    	           "Connect": { "name": "Connect","disabled": true, "icon": "fas fa-plug" }, 
+	    	           "DisConnect": { "name": "DisConnect","disabled": true, "icon": "fas fa-unlink" }, 
+	    	           "Add Groups": { "name": "Add Groups", "icon": "fas fa-users" }, 
+	    	           "Delete Group": { "name": "Delete Group", "icon": "fas fa-trash-alt" }, 
+	    	           "Add Tags": { "name": "Add Tags", "icon": "fas fa-tags" }, 
+	    	           "sep1": "---------",
+	    	           "quit": { "name": "Quit", "icon": "fas fa-sign-out-alt" },
+	    	           "sep2": "---------",
+	    	        };
+	    	    }
+	    	 },
+	       }, 
+	     });
+	   });
+
   </script>
 </head>
 
@@ -46,7 +74,7 @@
   <div id="tree">
     <ul id="treeData" style="display: none;">
       <li id="id1" title="Look, a tool tip!">item1 with key and tooltip
-      <li id="id2">item2
+      <li id="id2" class="expanded" >item2
       <li id="id3" class="folder">Folder for test 
         <ul>
           <li id="id3.1">Sub-item 3.1
@@ -63,12 +91,12 @@
         </ul>
       <li id="id4" class="expanded">LocalHost IP
         <ul>
-          <li id="id4.1"  class="active focused">KepWare.KEPServerEX.V6
+          <li id="id4.1"  class="folder">KepWare.KEPServerEX.V6
             <ul>
               <li id="id4.1.1">Sub-Group test1
               <li id="id4.1.2">Sub-Group test2
             </ul>
-          <li id="id4.2">Matrikon.OPC.Simulation.1
+          <li id="id4.2" class="folder">Matrikon.OPC.Simulation.1
             <ul>
               <li id="id4.2.1">Group0
               <li id="id4.2.2">Group1
@@ -77,5 +105,4 @@
     </ul>
   </div>
 </body>
-</div>
 </html>
