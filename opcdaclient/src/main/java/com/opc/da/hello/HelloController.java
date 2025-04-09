@@ -33,6 +33,10 @@ public class HelloController {
     }
     @GetMapping("/test")
     public String test() {
-    	return "testfile";
+    	return "test/testfile";
+    }
+    @GetMapping("/grid")
+    public String toastgrid() {
+    	return "test/gridtest";
     }
 }
